@@ -1,0 +1,11 @@
+// 1-10: Operator variations for detection
+StormEvents | where DamageProperty > 100000
+StormEvents | where State =~ "texas"
+StormEvents | project StartTime, EventType, Source
+StormEvents | extend TotalDamage = DamageProperty + DamageCrops
+StormEvents | extend Duration = EndTime - StartTime
+StormEvents | sort by DamageProperty desc
+StormEvents | top 10 by DamageProperty
+StormEvents | distinct EventType
+StormEvents | where Source has "Police"
+StormEvents | where DamageProperty > 0 | extend Impact = DamageProperty | project State, Impact | top 5 by Impact desc

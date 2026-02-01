@@ -1,0 +1,11 @@
+// 1. Inner Join: Damage per Citizen
+PopulationData 
+| join kind=inner (StormEvents | summarize TotalDamage = sum(DamageProperty) by State) on State 
+| extend PerCapita = TotalDamage / Population 
+| top 5 by PerCapita
+
+// 2. Left Outer: Population enrichment
+PopulationData | join kind=leftouter (StormEvents | summarize EventCount = count() by State) on State
+
+// 3. Left Semi: High-population filter
+PopulationData | where Population > 5000000 | join kind=leftsemi (StormEvents | where EventType == "Tornado") on State

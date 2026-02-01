@@ -1,0 +1,14 @@
+// 1. Basic sampling: Peeking at data structure
+StormEvents | take 10
+
+// 2. Simple filter: Finding specific event types
+StormEvents | where EventType == "Tornado"
+
+// 3. Multi-filter: Geographic and impact isolation
+StormEvents | where State == "FLORIDA" | where DamageProperty > 5000
+
+// 4. Column selection: Dropping the noise
+StormEvents | project StartTime, State, EventType | take 20
+
+// 5. Aliasing: Normalizing for readability
+StormEvents | project EventDate = StartTime, Location = State | take 5

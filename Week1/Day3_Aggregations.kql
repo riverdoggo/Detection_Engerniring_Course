@@ -1,0 +1,17 @@
+// 1. Volume baseline
+StormEvents | summarize count() by EventType
+
+// 2. Unique scope analysis
+StormEvents | summarize UniqueStates = dcount(State)
+
+// 3. Time-series (The Heart of Monitoring)
+StormEvents | summarize count() by bin(StartTime, 1d)
+
+// 4. Business Impact Summation
+StormEvents | summarize TotalLoss = sum(DamageProperty) by State | top 5 by TotalLoss
+
+// 5. Multi-Dimension Analysis
+StormEvents | summarize count() by State, EventType | sort by count_
+
+// 6. Visualization Chart
+StormEvents | summarize count() by bin(StartTime, 7d) | render timechart

@@ -1,0 +1,6 @@
+// Precision queries avoiding 'contains'
+StormEvents | where Source has "Police"
+StormEvents | where EventType startswith "Thun"
+StormEvents | where State endswith "ia"
+StormEvents | where Source has_cs "Public"
+StormEvents | where Source has "Radio" | where EventType !startswith "Heavy"
