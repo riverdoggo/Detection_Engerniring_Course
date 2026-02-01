@@ -1,0 +1,7 @@
+{
+  "essentials": {
+    "alertId": "sample-001",
+    "alertRule": "Demo Alert",
+    "severity": "Low"
+  }
+}
